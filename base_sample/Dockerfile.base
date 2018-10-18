@@ -1,0 +1,14 @@
+# setting base image
+FROM centos:centos7
+
+# Author
+MAINTAINER 0.1 pppurple
+
+# install Apache http server
+RUN ["yum",  "-y", "install", "httpd"]
+
+# deploy
+ONBUILD ADD web.tar /var/www/html/
+
+# start httpd
+CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
